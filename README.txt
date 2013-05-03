@@ -1,0 +1,1 @@
+localização do fonte no unix: /opt/httpd-2.2.17/htdocs/gaspar/zebra/

@@ -1,0 +1,18 @@
+^XA
+^LH100,100^FS
+^FXSHIPPING LABEL^FS
+^FO10,10^GB470,280,4^FS
+^FO10,190^GB470,4,4^FS
+^FO10,80^GB240,2,2^FS
+^FO250,10^GB2,100,2^FS
+^FO250,110^GB226,2,2^FS
+^FO250,60^GB226,2,2^FS
+^FO156,190^GB2,95,2^FS
+^FO312,190^GB2,95,2^FS
+^XZ
+
+pega todos os comandos de zebra
+\^FX|\^B2N|\^([a-zA-Z]*)
+
+pega somente os comandos de retângulo
+\^FO(.*)\^GB(.*)\^FS

@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="txtZebra" rows=20 cols=40>^XA
+^LH100,100^FS
+^FXSHIPPING LABEL^FS
+^FO10,10^GB470,280,4^FS
+^FO10,190^GB470,4,4^FS
+^FO10,80^GB240,2,2^FS
+^FO250,10^GB2,100,2^FS
+^FO250,110^GB226,2,2^FS
+^FO250,60^GB226,2,2^FS
+^FO156,190^GB2,95,2^FS
+^FO312,190^GB2,95,2^FS
+^XZ
+    </textarea>
+    <textarea id="txtZebraFormatado" rows=20 cols=40></textarea>
+    <input value="visualizar" type="button" onclick="chamaZebra();"></input>
+    <div id="container"></div>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <!-- http://kineticjs.com/docs/symbols/Kinetic.Layer.php -->
+    <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.4.2.min.js"></script>
+    <script defer="defer">
+      function montaCanvas(dados) {
+        var layer = new Kinetic.Layer();
+        // limpa os layers anteriores do stage
+        for (var i=0; i<stage.children.length; i++) {
+          var l = stage.children[i];
+          l.remove();
+        }
+        
+        var js_automatico;
+
+        //alert('resultado='+dados);
+        js_automatico = dados;
+
+        var roda_0   = 0;
+        var roda_90  = Math.PI/2;
+        var roda_270 = Math.PI*(3/2);
+        
+        eval(js_automatico);
+        // add the layer to the stage
+        stage.add(layer);
+      }
+
+      function chamaZebra() {
+        var txtZpl = $('#txtZebra').val();
+        var ret =
+        $.post
+        ( 'index.php'
+        , {zpl: txtZpl}
+        )
+        .done(montaCanvas);
+      }
+
+      /* prepara o canvas */
+      var stage = new Kinetic.Stage(
+      { container: 'container'
+      , width: 1000
+      , height: 1000
+      });
+
+      stage.setName('stgEtiqueta');
+      
+    </script>
+  </body>
+</html>
