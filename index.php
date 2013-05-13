@@ -1,5 +1,6 @@
 <?php
 # urano:8000/gaspar/zebra
+# /opt/httpd-2.2.17/htdocs/gaspar/zebra/
 function &identifica_comando_zpl
 ( $str
 , &$comando
